@@ -9,22 +9,23 @@ btnsubmit.addEventListener("click",(e)=>{
   let pwd2  =  pwd.value;
 
   let obj = {
-    email:email2,
-    pwd:pwd2
+    email: email2,
+    pwd: pwd2,
   };
 
-  axios.post("http://localhost:3000/userlogin",obj)
-  .then((result)=>{
-    if(result.data.msg =="login successfull"){
-      localStorage.setItem("token",result.data.token);
+  axios
+  .post("http://localhost:3000/userlogin", obj)
+  .then((result) => {
+    if (result.data.msg == "login successful"){
+      localStorage.setItem("token", result.data.token);
       location.replace("../chat/chat.html");
     }
   })
   .catch((err)=>{
-    if(err.response.status==404 || 401){
+    if(err.response.status == 404 || 401){
       alert("User not found")
 
     }
-  })
+  });
 
-})
+});
